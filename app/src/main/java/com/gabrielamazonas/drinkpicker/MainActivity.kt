@@ -4,8 +4,11 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 // The next import allows us to reference the components id's directly E.G.: selectedDrinkText
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+
+    val drinkList = arrayListOf("Martini", "Whisky", "Vodka")
 
     //Kotlin: No semicolons
 
@@ -18,9 +21,18 @@ class MainActivity : AppCompatActivity() {
         // layout = res/layout folder
         // activity_main = activity_main.xml file
         setContentView(R.layout.activity_main)
+        pickerButton.setOnClickListener {
+            val random = Random()
+            val randomDrink = random.nextInt(drinkList.count())
+            selectedDrinkText.text = drinkList[randomDrink]
+            println("Clicked!")
+        }
 
-        selectedDrinkText.text = "Sex on the Beach"
-
+        addButton.setOnClickListener {
+            val newDrinkText = addDrinkText.text.toString()
+            drinkList.add(newDrinkText)
+            addDrinkText.text.clear()
+        }
 
 
 
